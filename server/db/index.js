@@ -13,15 +13,15 @@ var connection = mysql.createConnection({
   database: 'chat'
 });
 
-connection.connect((err)=> {
-  if (err) {
-    throw err;
-  } else {
-    console.log('connected to database');
-  }
+// connection.connect((err)=> {
+//   if (err) {
+//     throw err;
+//   } else {
+//     console.log('connected to database');
+//   }
 
-});
+// });
 
-connection.end();
+// connection.end();
 
 exports.connection = connection;
