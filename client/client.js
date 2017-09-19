@@ -42,7 +42,8 @@ var app = {
     $.ajax({
       url: app.server,
       type: 'POST',
-      data: message,
+      data: JSON.stringify(message),
+      contentType: 'application/json',
       success: function (data) {
         // Clear messages input
         app.$message.val('');
@@ -65,24 +66,24 @@ var app = {
       success: function(data) {
         data = JSON.parse(data);
         // Don't bother if we have nothing to work with
-        if (!data || !data.length) { return; }
+        if (!data.results || !data.results.length) { return; }
 
         // Store messages for caching later
-        app.messages = data;
+        app.messages = data.results;
 
         // Get the last message
-        var mostRecentMessage = data[data.length - 1];
+        var mostRecentMessage = data.results[data.results.length - 1];
 
         // Only bother updating the DOM if we have a new message
-        if (mostRecentMessage.objectId !== app.lastMessageId) {
+        if (mostRecentMessage.id !== app.lastMessageId) {
           // Update the UI with the fetched rooms
-          app.renderRoomList(data);
+          app.renderRoomList(data.results);
 
           // Update the UI with the fetched messages
-          app.renderMessages(data, animate);
+          app.renderMessages(data.results, animate);
 
           // Store the ID of the most recent message
-          app.lastMessageId = mostRecentMessage.objectId;
+          app.lastMessageId = mostRecentMessage.id;
         }
       },
       error: function(error) {

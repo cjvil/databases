@@ -5,13 +5,12 @@ var db = require('../db');
 module.exports = {
   messages: {
     get: function (response) { // a function which produces all the messages
-      db.connection.query('SELECT * FROM messages', (err, result) => {
+      db.connection.query('SELECT * FROM messages', (err, results) => {
         if ( err ) { throw err; }
-        // console.log(result);
-        response.end(JSON.stringify(result));
+        response.end(JSON.stringify({results}));
       });    
     }, 
-    post: function (body) { // a function which can be used to insert a message into the database
+    post: function (body, response) { // a function which can be used to insert a message into the database
       var insertMessage = 'INSERT INTO messages (message, roomname, user_id) SELECT ?, ?, id FROM users WHERE name = ? LIMIT 1';
       var messageParams = [body.message, body.roomname, body.username];
       db.connection.query(insertMessage, messageParams, (err) => {
@@ -36,7 +35,7 @@ module.exports = {
 /* in mySQL
  * mysql> INSERT users (name) VALUES ('austin') ON DUPLICATE KEY UPDATE name=name;
  * 
- * mysql> INSERT INTO messages (message, user_id)
- *          SELECT 'hello world!', id
+ * mysql> INSERT INTO messages (message, roomname, user_id)
+ *          SELECT 'hello world!', 'lobby', id
  *            FROM users WHERE name = 'christie' LIMIT 1;
  */
