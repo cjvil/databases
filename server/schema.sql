@@ -9,9 +9,9 @@ CREATE TABLE messages (
   id INT NOT NULL AUTO_INCREMENT,
   message CHAR(140) NOT NULL,
   user_id INT NOT NULL,
-  room_id INT NOT NULL, 
+  -- room_id INT NOT NULL, 
   FOREIGN KEY (user_id) REFERENCES users (id),
-  FOREIGN KEY (room_id) REFERENCES rooms (id),
+  -- FOREIGN KEY (room_id) REFERENCES rooms (id),
   PRIMARY KEY (id)
 );
 
@@ -19,15 +19,15 @@ CREATE TABLE messages (
 
 CREATE TABLE users (
   id INT NOT NULL AUTO_INCREMENT,
-  name CHAR(25) NOT NULL,
+  name CHAR(25) NOT NULL UNIQUE,
   PRIMARY KEY (id)
 );
 
-CREATE TABLE rooms (
-  id INT NOT NULL AUTO_INCREMENT,
-  name CHAR(25) NOT NULL,
-  PRIMARY KEY (id)
-);
+-- CREATE TABLE rooms (
+--   id INT NOT NULL AUTO_INCREMENT,
+--   name CHAR(25) NOT NULL,
+--   PRIMARY KEY (id)
+-- );
 
 
 /*  Execute this file from the command line by typing:
