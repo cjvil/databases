@@ -19,7 +19,7 @@ CREATE TABLE messages (
 
 CREATE TABLE users (
   id INT NOT NULL AUTO_INCREMENT,
-  name CHAR(25) NOT NULL UNIQUE,
+  username CHAR(25) NOT NULL UNIQUE,
   PRIMARY KEY (id)
 );
 

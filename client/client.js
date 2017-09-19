@@ -65,6 +65,7 @@ var app = {
       contentType: 'application/json',
       success: function(data) {
         data = JSON.parse(data);
+        console.log(data.users);
         // Don't bother if we have nothing to work with
         if (!data.results || !data.results.length) { return; }
 
