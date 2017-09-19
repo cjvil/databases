@@ -7,7 +7,7 @@ module.exports = {
     get: function (response) { // a function which produces all the messages
       db.connection.query('SELECT * FROM messages', (err, result) => {
         if ( err ) { throw err; }
-        console.log('get request result', JSON.stringify(result));
+        // console.log(result);
         response.end(JSON.stringify(result));
       });    
     }, 

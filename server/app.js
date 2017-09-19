@@ -1,4 +1,5 @@
 var express = require('express');
+var cors = require('cors');
 // var db = require('./db');
 
 // Middleware
@@ -20,6 +21,7 @@ app.use(parser.json());
 
 // Set up our routes
 app.use('/classes', router);
+app.use(cors());
 
 // Serve the client files
 app.use(express.static(__dirname + '/../client'));
