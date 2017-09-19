@@ -10,14 +10,11 @@ module.exports = {
         console.log(result);
       });    
     }, 
-    post: function () { // a function which can be used to insert a message into the database
-      var insertMessage = 'INSERT INTO messages (user_id, message) values ("austin", "hello world!")';
-      db.connection.query(insertMessage, [], (err, result, fields) => {
+    post: function (body) { // a function which can be used to insert a message into the database
+      var insertMessage = 'INSERT INTO messages (message, user_id) SELECT ?, id FROM users WHERE name = ? LIMIT 1';
+      var messageParams = [body.message, body.username];
+      db.connection.query(insertMessage, messageParams, (err) => {
         if ( err ) { throw err; }
-        db.connection.query('SELECT * FROM messages', [], (err, results) => {
-          console.log('our own messages', JSON.stringify(results));
-          console.log('messages length ', results.length);
-        });
       });
     } 
   },
@@ -25,15 +22,11 @@ module.exports = {
   users: {
     // Ditto as above.
     get: function () {},
-    post: function () {
-      console.log('inside models.users.post');
-      var insertUser = 'INSERT users (name) VALUES ("austin") ON DUPLICATE KEY UPDATE name=name';
-      db.connection.query(insertUser, [], (err, result, fields) => {
+    post: function (body) {
+      var params = [body.username];
+      var insertUser = 'INSERT INTO users (name) VALUES (?) ON DUPLICATE KEY UPDATE name=name';
+      db.connection.query(insertUser, params, (err) => {
         if ( err ) { throw err; }
-        db.connection.query('SELECT * FROM users', [], (err, results) => {
-          console.log('our own users', JSON.stringify(results));
-          console.log('users length ', results.length);
-        });
       });
     }
   }
