@@ -17,11 +17,11 @@ CREATE TABLE messages (
 
 /* Create other tables and define schemas for them here! */
 
--- CREATE TABLE users (
---   id INT NOT NULL AUTO_INCREMENT,
---   name CHAR(25) NOT NULL UNIQUE,
---   PRIMARY KEY (id)
--- );
+CREATE TABLE users (
+  id INT NOT NULL AUTO_INCREMENT,
+  name CHAR(25) NOT NULL UNIQUE,
+  PRIMARY KEY (id)
+);
 
 -- CREATE TABLE rooms (
 --   id INT NOT NULL AUTO_INCREMENT,

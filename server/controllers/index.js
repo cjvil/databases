@@ -12,7 +12,7 @@ module.exports = {
       res.end();
     }, 
     post: function (req, res) { // a function which handles posting a message to the database
-      console.log('posted to messages');
+      console.log('posted to messages', req.method);
       models.messages.post();
       res.end();
     } 
@@ -22,7 +22,8 @@ module.exports = {
     // Ditto as above
     get: function (req, res) {},
     post: function (req, res) {
-      console.log('posted to users');
+      console.log('posted to users ');
+      models.users.post();
       res.end();
     }
   }
