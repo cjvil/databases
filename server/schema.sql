@@ -9,7 +9,7 @@ CREATE TABLE messages (
   id INT NOT NULL AUTO_INCREMENT,
   message CHAR(140) NOT NULL,
   user_id INT NOT NULL,
-  -- room_id INT NOT NULL, 
+  roomname CHAR(25) NOT NULL, 
   FOREIGN KEY (user_id) REFERENCES users (id),
   -- FOREIGN KEY (room_id) REFERENCES rooms (id),
   PRIMARY KEY (id)
