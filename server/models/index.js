@@ -30,7 +30,7 @@ module.exports = {
     }, 
     post: function (body) {
       var params = [body.username];
-      var insertUser = 'INSERT INTO users (name) VALUES (?) ON DUPLICATE KEY UPDATE username=username';
+      var insertUser = 'INSERT INTO users (username) VALUES (?) ON DUPLICATE KEY UPDATE username=username';
       db.connection.query(insertUser, params, (err) => {
         if ( err ) { throw err; }
       });
